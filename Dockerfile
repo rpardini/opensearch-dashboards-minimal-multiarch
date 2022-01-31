@@ -36,9 +36,6 @@
 ########################### Stage 0 ########################
 FROM amazonlinux:2 AS linux_stage_0
 
-ARG UPSTREAM_VERSION=1.2.0
-ARG UPSTREAM_BRANCH=main
-
 ARG UID=1000
 ARG GID=1000
 ARG OPENSEARCH_DASHBOARDS_HOME=/usr/share/opensearch-dashboards
@@ -55,6 +52,9 @@ RUN groupadd -g $GID opensearch-dashboards && \
 # Download the minimal tarball from directly from OS
 # amd64: https://artifacts.opensearch.org/releases/core/opensearch-dashboards/1.0.0/opensearch-dashboards-min-1.0.0-linux-x64.tar.gz
 # arm64: https://artifacts.opensearch.org/releases/core/opensearch-dashboards/1.0.0/opensearch-dashboards-min-1.0.0-linux-arm64.tar.gz
+
+ARG UPSTREAM_VERSION=1.2.0
+ARG UPSTREAM_BRANCH=main
 
 RUN [[ "$(arch)" == "x86_64" ]] && export OS_ARCH="x64"; [[ "$(arch)" == "aarch64" ]] && export OS_ARCH="arm64"; echo "OS_ARCH: $OS_ARCH"; \
     wget --progress=dot:giga -O "/tmp/opensearch-dashboards/opensearch-dashboards.tgz" https://artifacts.opensearch.org/releases/core/opensearch-dashboards/${UPSTREAM_VERSION}/opensearch-dashboards-min-${UPSTREAM_VERSION}-linux-${OS_ARCH}.tar.gz
