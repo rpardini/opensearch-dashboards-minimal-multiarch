@@ -64,5 +64,6 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             UPSTREAM_VERSION=${{env.UPSTREAM_VERSION}}
+            UPSTREAM_BRANCH=${{env.UPSTREAM_VERSION}}
           tags: ghcr.io/${{ github.repository }}:latest,ghcr.io/${{ github.repository }}:${{env.MAJOR}}.${{env.MINOR}}.${{env.PATCH}},ghcr.io/${{ github.repository }}:${{env.MAJOR}}.${{env.MINOR}},ghcr.io/${{ github.repository }}:${{env.MAJOR}}
 
