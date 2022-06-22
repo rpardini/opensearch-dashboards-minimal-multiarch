@@ -77,17 +77,17 @@ ARG UID=1000
 ARG GID=1000
 ARG OPENSEARCH_DASHBOARDS_HOME=/usr/share/opensearch-dashboards
 
-COPY --from=linux_stage_0 $OPENSEARCH_DASHBOARDS_HOME $OPENSEARCH_DASHBOARDS_HOME
-
-# Setup OpenSearch-dashboards
-WORKDIR $OPENSEARCH_DASHBOARDS_HOME
-
 # Update packages
 # Install the tools we need: tar and gzip to unpack the OpenSearch tarball, and shadow-utils to give us `groupadd` and `useradd`.
 RUN yum update -y && yum install -y tar gzip shadow-utils && yum clean all
 
 # Install notebooks dependencies
 RUN yum install -y libnss3.so xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc fontconfig freetype && yum clean all
+
+COPY --from=linux_stage_0 $OPENSEARCH_DASHBOARDS_HOME $OPENSEARCH_DASHBOARDS_HOME
+
+# Setup OpenSearch-dashboards
+WORKDIR $OPENSEARCH_DASHBOARDS_HOME
 
 # Create an opensearch-dashboards user, group
 RUN groupadd -g $GID opensearch-dashboards && \
