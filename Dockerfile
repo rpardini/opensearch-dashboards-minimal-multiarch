@@ -53,8 +53,8 @@ RUN groupadd -g $GID opensearch-dashboards && \
 # amd64: https://artifacts.opensearch.org/releases/core/opensearch-dashboards/1.0.0/opensearch-dashboards-min-1.0.0-linux-x64.tar.gz
 # arm64: https://artifacts.opensearch.org/releases/core/opensearch-dashboards/1.0.0/opensearch-dashboards-min-1.0.0-linux-arm64.tar.gz
 
-ARG UPSTREAM_VERSION=1.3.3
-ARG UPSTREAM_BRANCH=1.3.3
+ARG UPSTREAM_VERSION=1.3.4
+ARG UPSTREAM_BRANCH=1.3.4
 
 RUN [[ "$(arch)" == "x86_64" ]] && export OS_ARCH="x64"; [[ "$(arch)" == "aarch64" ]] && export OS_ARCH="arm64"; echo "OS_ARCH: $OS_ARCH"; \
     wget --progress=dot:giga -O "/tmp/opensearch-dashboards/opensearch-dashboards.tgz" https://artifacts.opensearch.org/releases/core/opensearch-dashboards/${UPSTREAM_VERSION}/opensearch-dashboards-min-${UPSTREAM_VERSION}-linux-${OS_ARCH}.tar.gz
