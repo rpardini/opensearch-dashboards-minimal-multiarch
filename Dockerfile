@@ -66,7 +66,7 @@ RUN tar -xzf /tmp/opensearch-dashboards/opensearch-dashboards.tgz -C $OPENSEARCH
 ADD opensearch_dashboards.yml $OPENSEARCH_DASHBOARDS_HOME/config/
 
 # This comes straight from the repo for now
-ADD https://raw.githubusercontent.com/opensearch-project/opensearch-build/${ACTUALLY_RELEASED_VERSION}/docker/release/config/opensearch-dashboards/opensearch-dashboards-docker-entrypoint.sh $OPENSEARCH_DASHBOARDS_HOME/
+ADD https://raw.githubusercontent.com/opensearch-project/opensearch-build/${ACTUALLY_RELEASED_VERSION}/docker/release/config/opensearch-dashboards/opensearch-dashboards-docker-entrypoint-1.x.sh $OPENSEARCH_DASHBOARDS_HOME/opensearch-dashboards-docker-entrypoint.sh
 
 # Make it executable, since it's coming over http.
 RUN chmod +x $OPENSEARCH_DASHBOARDS_HOME/*.sh
